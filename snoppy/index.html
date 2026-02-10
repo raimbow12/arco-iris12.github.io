@@ -1,0 +1,158 @@
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¿Quieres ser mi San Valentín? 💖</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffd6e8, #fff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 24px 20px 32px;
+      max-width: 360px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      position: relative;
+    }
+    h1 {
+      color: #ff5c8a;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #444;
+      font-size: 1rem;
+      margin-bottom: 18px;
+    }
+    .snoopy {
+      width: 180px;
+      margin: 10px auto 20px;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 10px;
+    }
+    button {
+      padding: 12px 22px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    button:active {
+      transform: scale(0.95);
+    }
+    .yes {
+      background: #ff5c8a;
+      color: white;
+      box-shadow: 0 8px 20px rgba(255,92,138,0.4);
+    }
+    .no {
+      background: #eee;
+      color: #555;
+      position: relative;
+    }
+    .message {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #ff5c8a;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff5c8a;
+      transform: rotate(45deg);
+      animation: float 4s linear infinite;
+      opacity: 0.8;
+    }
+    .heart::before,
+    .heart::after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: #ff5c8a;
+      border-radius: 50%;
+      position: absolute;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(-600px) rotate(45deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>¿Quieres ser mi San Valentín? 💘</h1>
+    <p>Snoopy y yo tenemos algo importante que preguntarte, <strong>Daniela</strong>…</p>
+    <img class="snoopy" id="snoopyImg" src="kkk.png" alt="Snoopy" />
+    <div class="buttons">
+      <button class="yes" onclick="accept()">Sí 💖</button>
+      <button class="no" onmouseover="moveNo()">No 🙈</button>
+    </div>
+    <div class="message" id="message">💞 Danielotaaaaa te amooooo jajaja beshossss mi niña 💞<br><br><button class="yes" onclick="goSurprise()">Ver sorpresa ✨</button></div>
+  </div>  <script>
+    function accept() {
+      document.getElementById('message').style.display = 'block';
+      createHearts();
+    }
+
+    function moveNo() {
+      const btn = document.querySelector('.no');
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      btn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    function createHearts() {
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.bottom = '-20px';
+        heart.style.animationDuration = 3 + Math.random() * 3 + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+      }
+    }
+
+    function goSurprise() {
+      document.body.innerHTML = `
+        <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ffb6d5,#fff);text-align:center;padding:20px;">
+          <div style="background:white;border-radius:24px;padding:30px;max-width:360px;box-shadow:0 20px 40px rgba(0,0,0,0.15);">
+            <h1 style="color:#ff5c8a;">💖 Para Daniela 💖</h1>
+            <img src="snp.png" style="width:160px;margin:15px auto;" />
+            <p style="font-size:1.1rem;color:#444;">Gracias por llegar a mi vidaaaa, Este San Valentín es solo el comienzo de muchos momentos bonitos juntos.</p>
+            <p style="color:#ff5c8a;font-size:1.2rem;">💘 Te amooooooooooooooooooo muchísimo 🐶</p>
+          </div>
+        </div>`;
+      createHearts();
+    }
+  </script></body>
+</html>
